@@ -2,16 +2,33 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
 
+void refresh_reading();
+
 #define SEALEVELPRESSURE_HPA (1013.25)
-Adafruit_BME280 bme;
+Adafruit_BME280 bme; //I2C
 
-void setup(){
-    // put your setup code here, to run once:
-};
+void setup()
+{
+  // put your setup code here, to run once:
+  Serial.begin(115200);
 
-void loop(){
-    // put your main code here, to run repeatedly:
-};
+  bool status;
+  status = bme.begin(0x76);
+
+  if (!status)
+  {
+    Serial.println("could not find a valid BME280 seonsor, Check Wiring");
+    while (1)
+      ;
+  }
+}
+
+void loop()
+{
+  // put your main code here, to run repeatedly:
+  refresh_reading();
+  delay(2000);
+}
 
 void refresh_reading()
 {
@@ -44,5 +61,5 @@ void refresh_reading()
   Serial.println(f_altitude);
 
   // digitalWrite(LED_BUILTIN, LOW);
-  Serial.print("============================")
+  Serial.print("============================");
 };
