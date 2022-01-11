@@ -1,29 +1,31 @@
 #include <Arduino.h>
 #include <Wire.h>
-#include "sensor_readings.cpp"
+#include <sensor_readings.h>
+#include <settings.h>
 
 // void refresh_reading();
 void I2C_Scan();
+
+Adafruit_BME280 bme; //I2C
+TwoWire I2CBME = TwoWire(0);
 
 void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(115200);
   Wire.begin();
-  Wire.beginTransmission(Addr);
+  Wire.beginTransmission(BME280_Addr);
   // I2C_Scan();
 
   bool status;
 
   //
-  Serial.println((int)&I2CBME, HEX);
-  status = bme.begin(0x76, &I2CBME);
+  status = bme.begin(BME280_Addr);
 
   if (!status)
   {
     Serial.println("could not find a valid BME280 seonsor, Check Wiring");
     I2C_Scan();
-    Serial.println(I2C_SCL);
     while (1)
       ;
   }
@@ -36,7 +38,7 @@ void setup()
 void loop()
 {
   // put your main code here, to run repeatedly:
-  refresh_reading();
+  refresh_reading(bme);
   delay(2000);
 }
 

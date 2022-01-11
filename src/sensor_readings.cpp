@@ -1,16 +1,8 @@
-#include <Adafruit_Sensor.h>
-#include <Adafruit_BME280.h>
+#include <Arduino.h>
+#include <sensor_readings.h>
+#include <settings.h>
 
-#define Addr 0x76
-#define I2C_SDA 21
-#define I2C_SCL 22
-
-#define SEALEVELPRESSURE_HPA (1013.25)
-
-TwoWire I2CBME = TwoWire(0);
-Adafruit_BME280 bme; //I2C
-
-void refresh_reading()
+void refresh_reading(Adafruit_BME280 bme)
 {
 
     float f_temperature;
@@ -18,7 +10,7 @@ void refresh_reading()
     float f_pressure;
     float f_altitude;
 
-    // digitalWrite(LED_BUILTIN, HIGH);
+    digitalWrite(LED_BUILTIN, HIGH);
 
     f_temperature = bme.readTemperature();
     f_humidity = bme.readHumidity();
@@ -41,6 +33,6 @@ void refresh_reading()
     Serial.print("Altitude: ");
     Serial.println(f_altitude);
 
-    // digitalWrite(LED_BUILTIN, LOW);
+    digitalWrite(LED_BUILTIN, LOW);
     Serial.print("============================");
 };
