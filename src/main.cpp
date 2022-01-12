@@ -2,12 +2,19 @@
 #include <Wire.h>
 #include <sensor_readings.h>
 #include <settings.h>
+#include <TFT_eSPI.h>
+#include <Ticker.h>
 
 // void refresh_reading();
 void I2C_Scan();
 
 Adafruit_BME280 bme; //I2C
 TwoWire I2CBME = TwoWire(0);
+
+TFT_eSPI tft = TFT_eSPI();
+
+uint16_t bg = TFT_BLACK;
+uint16_t fg = TFT_WHITE;
 
 void setup()
 {
@@ -16,6 +23,12 @@ void setup()
   Wire.begin();
   Wire.beginTransmission(BME280_Addr);
   // I2C_Scan();
+
+  tft.setTextColor(fg, bg);
+  tft.loadFont("SansSerif-36");
+  tft.setRotation(3);
+  tft.setCursor(5, 5);
+  tft.println("ShieldKhan Loading...");
 
   bool status;
 
@@ -32,6 +45,7 @@ void setup()
   else
   {
     Serial.println("BME280 Sensor Found");
+    Serial.print("TFT_LCD Loaded!");
   }
 }
 
