@@ -21,8 +21,9 @@ void refresh_reading(Adafruit_BME280 *bme, TFT_eSPI *tft)
     f_altitude = bme->readAltitude(SEALEVELPRESSURE_HPA);
 
     tft->setTextColor(TFT_YELLOW, bg);
+    tft->loadFont("ChalkboardBold15");
     tft->setCursor(5, 5);
-    tft->print("===========TEST============");
+    tft->print("===========TEST ChalkBoard Font============");
 
     // Temperature
     Serial.print("Temperature: ");
@@ -41,5 +42,6 @@ void refresh_reading(Adafruit_BME280 *bme, TFT_eSPI *tft)
     tft->println(f_altitude);
 
     digitalWrite(LED_BUILTIN, LOW);
-    tft->print("============================");
+    tft->loadFont("SpoqaHanSansNeoBold15");
+    tft->print("============SpoqaHanSansNeoBold Font================");
 };

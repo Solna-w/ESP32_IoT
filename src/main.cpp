@@ -4,6 +4,7 @@
 #include <TFT_eSPI.h>
 #include <I2C_Scan.h>
 #include <settings.h>
+#include <SPIFFS.h>
 
 // void refresh_reading();
 // void I2C_Scan();
@@ -20,16 +21,25 @@ void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(115200);
+
+  if (!SPIFFS.begin())
+  {
+    Serial.println("SPIFFS initialization faild!");
+    while (1)
+      yield();
+  }
+
   Wire.begin();
   Wire.beginTransmission(BME280_Addr);
   // I2C_Scan();
   tft.init();
 
   tft.setTextColor(fg, bg);
-  tft.loadFont("SansSerif-36");
+  tft.loadFont("SpoqaHanSansNeoBold15");
   tft.setRotation(3);
   tft.fillScreen(bg);
   tft.setCursor(5, 5);
+  tft.loadFont("SpoqaHanSansNeoBold15");
   tft.println("ShieldKhan Loading...");
   tft.println("Starting I2C Scan  ...");
 
