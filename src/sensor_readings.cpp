@@ -18,6 +18,8 @@ void refresh_reading(Adafruit_BME280 bme)
     f_altitude = bme.readAltitude(SEALEVELPRESSURE_HPA);
 
     // Temperature
+    tft.setTextColor(fg, bg);
+    tft.println("Temperature: ");
     Serial.print("Temperature: ");
     Serial.println(f_temperature);
 
