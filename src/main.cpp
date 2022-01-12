@@ -31,7 +31,7 @@ void setup()
   tft.fillScreen(bg);
   tft.setCursor(5, 5);
   tft.println("ShieldKhan Loading...");
-  tft.println("Starting I2C Scan...");
+  tft.println("Starting I2C Scan  ...");
 
   bool status;
 
@@ -57,7 +57,6 @@ void setup()
 void loop()
 {
   // put your main code here, to run repeatedly:
-  refresh_reading(bme);
-  delay(2000);
+  refresh_reading(&bme, &tft);
   I2C_Scan();
 }

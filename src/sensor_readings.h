@@ -4,10 +4,11 @@
 #include <Arduino.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
+#include <TFT_eSPI.h>
 
 #define BME280_Addr 0x76
 #define SEALEVELPRESSURE_HPA (1013.25)
 
-void refresh_reading(Adafruit_BME280 bme);
+void refresh_reading(Adafruit_BME280 *bme, TFT_eSPI *tft);
 
 #endif
