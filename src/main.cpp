@@ -42,7 +42,7 @@ void setup()
   {
     Serial.println("could not find a valid BME280 seonsor, Check Wiring");
     I2C_Scan();
-    while (1)
+    while (0)
       ;
   }
   else
