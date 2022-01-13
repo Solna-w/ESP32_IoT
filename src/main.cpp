@@ -5,6 +5,7 @@
 #include <I2C_Scan.h>
 #include <settings.h>
 #include <SPIFFS.h>
+#include <dht22_reading.h>
 
 // void refresh_reading();
 // void I2C_Scan();
@@ -41,11 +42,10 @@ void setup()
   tft.setCursor(5, 5);
   tft.loadFont("SpoqaHanSansNeoBold15");
   tft.println("ShieldKhan Loading...");
-  tft.println("Starting I2C Scan  ...");
+  tft.println("Starting I2C Scan...");
 
   bool status;
 
-  //
   status = bme.begin(BME280_Addr);
 
   if (!status)

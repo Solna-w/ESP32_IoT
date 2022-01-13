@@ -4,7 +4,6 @@
 
 void refresh_reading(Adafruit_BME280 *bme, TFT_eSPI *tft)
 {
-
     float f_temperature;
     float f_humidity;
     float f_pressure;
